@@ -16,15 +16,24 @@ class CarController extends Controller
         $checkToken = $JwtAuth->checkToken($hash);
 
         if ($checkToken) {
+
             $user = $JwtAuth->checkToken($hash, true);
             $user_id = $user->sub;
 
-            $carsByUser = Car::where('partner_id', '=', $user_id)->get()->load('user')->load('brand')->load('typecar')->load('color');
+            if ($carsByUser = Car::where('partner_id', '=', $user_id)->get()->load('user')->load('brand')->load('typecar')->load('color')) {
+                
+                return response()->json(array(
+                    'cars' => $carsByUser,
+                    'status' => 'success'
+                ), 200);
+            }else{
+                return response()->json(array(
+                    'status' => 'error',
+                    'message' => 'Usted no cuenta con ningún vehículo registrado!'
+                ), 400);
+            }
 
-            return response()->json(array(
-                'cars' => $carsByUser,
-                'status' => 'success'
-            ), 200);
+            
         }
     }
 
