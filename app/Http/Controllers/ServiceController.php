@@ -102,7 +102,6 @@ class ServiceController extends Controller
             $tipogrua_id = '1';// checar este campo
             $tmestimadoarribo = 'En proceso...';// checar este campo
 
-
             if (!is_null($partner_id) && !is_null($vehiculo_id) && !is_null($tiposervicio_id) && !is_null($tipopago_id) && !is_null($seencuentra) && !is_null($selleva) &&  $partner_id != "" && $vehiculo_id != "" && $tiposervicio_id != "" && $tipopago_id != "" && $seencuentra != "" && $selleva != "") {
 
             	$service = new Service(); 
