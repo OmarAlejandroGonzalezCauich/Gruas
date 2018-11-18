@@ -73,7 +73,7 @@ class ServiceController extends Controller
         	$user = $JwtAuth->checkToken($hash, true);
         	$json = $request->input('json', null);
 
-        	date_default_timezone_set('America/Cancun');
+        	date_default_timezone_set('UTC');
     		
     		$params = json_decode($json);
 
@@ -81,8 +81,9 @@ class ServiceController extends Controller
     		$create_date = now();
     		$write_date = now();
     		$write_uid = '8';
-    		$name = 'No se que hace esto';
-    		$fecha = date('Y-m-d');
+    		//$name = "Cast(Current_Date as Varchar(10))";
+			//$name = "Replace((Cast(Current_Date as Varchar(10))),'-','') || '-' || lpad(currval('cms_padsolicitudes_id_seq')::text,8,'0')";
+    		//$fecha = date('Y-m-d');
     		$state = 'draft';
     		$currency_id = '34';
     		$company_id = '1';
@@ -97,9 +98,9 @@ class ServiceController extends Controller
             $telefono = $user->mobile;
             $seencuentra = (!is_null($json) && isset($params->seencuentra)) ? $params->seencuentra : null;
             $selleva = (!is_null($json) && isset($params->selleva)) ? $params->selleva : null;
-            $operador_id = '1';//Checar este campo
-            $grua_id = '1';//Checar este campo
-            $tipogrua_id = '1';// checar este campo
+            //$operador_id = '1';//Checar este campo
+            //$grua_id = '1';//Checar este campo
+            //$tipogrua_id = '1';// checar este campo
             $tmestimadoarribo = 'En proceso...';// checar este campo
 
             if (!is_null($partner_id) && !is_null($vehiculo_id) && !is_null($tiposervicio_id) && !is_null($tipopago_id) && !is_null($seencuentra) && !is_null($selleva) &&  $partner_id != "" && $vehiculo_id != "" && $tiposervicio_id != "" && $tipopago_id != "" && $seencuentra != "" && $selleva != "") {
@@ -109,8 +110,7 @@ class ServiceController extends Controller
             	$service->create_date = $create_date;
             	$service->write_date = $write_date;
             	$service->write_uid = $write_uid;
-            	$service->name = $name;
-            	$service->fecha = $fecha;
+            	//$service->fecha = $fecha;
             	$service->state = $state;
             	$service->currency_id = $currency_id;
             	$service->company_id = $company_id;
@@ -125,10 +125,10 @@ class ServiceController extends Controller
             	$service->telefono = $telefono;
             	$service->seencuentra = $seencuentra;
             	$service->selleva = $selleva;
-            	$service->operador_id = $operador_id;
-            	$service->grua_id = $grua_id;
+            	//$service->operador_id = $operador_id;
+            	//$service->grua_id = $grua_id;
             	$service->tmestimadoarribo = $tmestimadoarribo;
-            	$service->tipogrua_id = $tipogrua_id;
+            	//$service->tipogrua_id = $tipogrua_id;
 
             	$service->save();
 

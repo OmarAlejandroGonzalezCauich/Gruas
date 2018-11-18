@@ -175,6 +175,11 @@ class CarController extends Controller
             unset($params_array['write_uid']);
             unset($params_array['create_date']);
             unset($params_array['write_date']);
+            unset($params_array['brand']);
+            unset($params_array['typecar']);
+            unset($params_array['color']);
+            unset($params_array['user']);
+            unset($params_array['partner_id']);
 
             $isset_user = Car::where('id', '=', $id)->first();
 
